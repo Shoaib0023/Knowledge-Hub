@@ -3,7 +3,7 @@ from . import views
 from django.contrib.auth.views import login, logout
 
 urlpatterns = [
-    url(r'^home/$', views.home, name="home"),
+    url(r'', views.home, name="home"),
     # accounts related urls
     url(r'^home/signup/$', views.signup, name="signup"),
     url(r'^accounts/login/$', login, {'template_name':'accounts/login.html'}, name="login"),
