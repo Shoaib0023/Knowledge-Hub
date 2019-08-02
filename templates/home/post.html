@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block title %}<title>Post</title>{% endblock %}
+
+    {% block css %}
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/home/blog-home.css' %}" rel="stylesheet">
+    {% endblock %}
+
+
+{% block body %}
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+          <h1 class="my-4 display-4">Post
+            <!-- <small>Secondary Text</small> -->
+          </h1>
+
+          <!-- Blog Post -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <p class="card-text lead">
+                {{ post.get_message_as_markdown }}
+              </p>
+              <a href="{% url 'replypost' post.id %}" class="btn btn-outline-secondary">Reply &rarr;</a>
+            </div>
+
+            <div class="card-footer text-muted">
+              <div class="row">
+                <div class="col-6">
+                    <b>Views: {{ post.views }}</b>
+                </div>
+                <div class="col-6 ">
+                    Posted on {{ post.created_at.date }} by
+                    <a href="#">{{ post.created_by }}</a>
+                </div>
+
+              </div>
+           </div>
+         </div>
+
+      <p><span class="glyphicon glyphicon-envelope">Answers  &rarr;</span></p>
+        {% if replypost %}
+          {% for replypost in post.reply.all %}
+            <div class="card my-3 " >
+              <div class="card-body answerdiv">
+                <p>{{ replypost.get_reply_as_markdown }}<p>
+              </div>
+              <div class="card-footer text-muted">
+                <div class="row">
+                  <div class="col-6 ml-auto mr-1">
+                    Posted on {{ replypost.created_at.date }} by
+                    <a href="#">{{ replypost.created_by }}</a>
+                  </div>
+                </div>
+               </div>
+             </div><hr>
+          {% endfor %}
+      {% else %}
+      <div class="card my-3" >
+        <div class="card-body">
+          <p>No reply yet.<p>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Search Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+
+
+{% endblock %}

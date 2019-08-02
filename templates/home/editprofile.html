@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Edit Profile</title>{% endblock %}
+
+{% block body %}
+<div class="container my-5" style="padding-top:60px">
+  <div class="row">
+    <div class="col-md-4 px-5">
+      {% if profile.image %}
+      <img src="{{ profile.image.url }}" alt="image" class="mx-auto img-thumbnail img-fluid img-circle d-block">
+      {% else %}
+      <img src="{% static 'img/Christian-Navarro.png' %}" alt="image" class="mx-auto img-thumbnail img-fluid img-circle d-block">
+      {% endif %}
+    </div>
+
+
+    <div class="col-8">
+      <h4 class="display-4 mb-4"> Edit Profile</h4><hr>
+
+          <h6 class="mb-3">Username:  <strong class="text-muted"> {{ current_user.username }}</strong></h6>
+           <div class="row">
+             <div class="col">
+               <form method ="post" enctype='multipart/form-data'>
+                 {% csrf_token %}
+                  {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Save</button>
+              </form>
+             </div>
+
+            </div>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

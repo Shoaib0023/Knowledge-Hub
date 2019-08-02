@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Edit</title>{% endblock %}
+
+{% block css %}
+  <link href="{% static 'css/home/blog-home.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+      <h6 class="mt-4">Ask Question
+        <!-- <small>Secondary Text</small> -->
+      </h6><hr>
+
+      <div class="container mb-4">
+        <div class="card">
+          <div class="card-body">
+            <form method = "post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <!-- <a href="{% url 'post' post.id %}"><button class="btn btn-info">Save</button></a> -->
+              <button type="submit" class="btn btn-info">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4">
+
+      <!-- Search Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+          {% include 'search-form.html' %}
+        </div>
+      </div>
+
+    
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+{% endblock %}

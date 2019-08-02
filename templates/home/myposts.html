@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>My Posts</title>{% endblock %}
+
+{% block css %}
+<link href="{% static 'css/home/blog-home.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+<!-- Page Content -->
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+      <h1 class="my-4 display-4">My Posts
+        <!-- <small>Secondary Text</small> -->
+      </h1>
+
+      <!-- Blog Post -->
+      {% for post in posts %}
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <p class="card-text">
+            <p class="lead">{{ post.message }}</p>
+          </p>
+          <a href="{% url 'replypost' post.id %}" class="btn btn-outline-secondary mr-3">Reply &rarr;</a>
+          <a href="{% url 'post' post.id %}" class="btn btn-outline-secondary">View &rarr;</a>
+          <!-- <a href="{{ post.get_absolute_url }}" class="btn btn-outline-secondary">View &rarr;</a> -->
+
+        </div>
+        <div class="card-footer text-muted">
+          <div class="row">
+            <div class="col-4">
+                <b>Views: </b>
+            </div>
+            <div class="col-4">
+                <span class="likebutton"><b>Likes:</b><span id="likecount"> {{ post.like }}</span> </span>
+            </div>
+            <div class="col-4">
+              Posted by
+          <a href="#">{{ post.created_by }}</a>
+            </div>
+        </div>
+    </div>
+  </div>
+      {% endfor %}
+      <!-- Pagination -->
+      <ul class="pagination justify-content-center mb-4">
+        <li class="page-item">
+          <a class="page-link" href="#">&larr; Older</a>
+        </li>
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Newer &rarr;</a>
+        </li>
+      </ul>
+
+    </div>
+
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+{% endblock %}

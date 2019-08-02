@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Search</title>{% endblock %}
+
+{% block body %}
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+      <!-- <h1 class="my-4 display-4" style="padding-top:50px;">Search for
+        <small class="text-muted">{{ object }}</small>
+      </h1> -->
+      <h6 class="text-muted" style="padding-top:90px">Search result for {{ object }}</h6><hr>
+
+      <!-- Blog Post -->
+      {% for post in posts %}
+
+      <div class="card mb-4">
+        <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
+        <div class="card-body">
+          <!-- <h2 class="card-title">Post Title</h2> -->
+          <p class="card-text">
+            <p class="lead">{{ post.message }}</p>
+          </p>
+          <a href="{% url 'replypost' post.id %}" class="btn btn-outline-secondary mr-3">Reply &rarr;</a>
+          <a href="{% url 'post' post.id %}" class="btn btn-outline-secondary">View &rarr;</a>
+
+        </div>
+        <div class="card-footer text-muted">
+          <div class="row">
+            <div class="col-8">
+                <b>Views: </b>
+            </div>
+            <div class="col-4">
+              Posted by
+          <a href="#">{{ post.created_by }}</a>
+            </div>
+        </div>
+    </div>
+  </div>
+      {% endfor %}
+
+{% endblock %}

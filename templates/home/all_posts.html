@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block title %}<title>Blog Home - Start Bootstrap Template</title>{% endblock %}
+
+    {% block css %}
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="{% static 'css/home/blog-home.css' %}" rel="stylesheet">
+
+    <!-- <script>
+      function likefunc(id, e){
+        $.ajax({
+          url:'/home/questions/' + id +'/like/',
+          method:'POST',
+          data:'id='+id,
+          error:function(response){
+            alert('Error');
+          },
+          success:function(response){
+          e.children[1].textContent = response;
+
+          }
+        })
+      }
+    </script> -->
+    {% endblock %}
+
+{% block body %}
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+          <!-- <h1 class="my-4 display-4">Forum</h1> -->
+        <div class="row">
+          <div class="col-md-6">
+             <h1 class="my-4 display-4">Forum</h1>
+          </div>
+
+          <div class="col-md-3">
+            <!-- <a href="{% url 'mostviewed' %}"<button class="btn btn-info mt-5 pr-3 pl-3">Most Viewed Post</button></a> -->
+              <a href="{% url 'mostviewed' %}" class="btn btn-info mt-5">Most Viewed</a>
+          </div>
+          <div class="col-md-3" >
+            <a href="{% url 'askquestion' %}"<button class="btn btn-info mt-5 mb-2">Ask Question</button></a>
+          </div>
+        </div>
+
+
+          <!-- Blog Post -->
+          {% for post in posts %}
+
+          <div class="card mb-4">
+            <div class="card-body">
+              <p class="card-text text-muted">
+                {{ post.get_message_as_markdown }}
+              </p>
+              <a href="{% url 'replypost' post.id %}" class="btn btn-outline-secondary mr-3">Reply &rarr;</a>
+              <a href="{% url 'post' post.id %}" class="btn btn-outline-secondary">View &rarr;</a>
+              <!-- <a href="{{ post.get_absolute_url }}" class="btn btn-outline-secondary">View &rarr;</a> -->
+            </div>
+            <div class="card-footer text-muted">
+              <div class="row">
+                <div class="col-6">
+                    <b>Views: {{ post.views }}</b>
+                </div>
+                <!-- <div class="col-4">
+                    <span class="likebutton" onclick="likefunc({{ post.id }}, this)"><b>Likes:</b><span id="likecount"> {{ post.like }}</span> </span>
+                </div> -->
+                <div class="col-6">
+                  Posted by
+              <a href="#">{{ post.created_by }}</a> at {{ post.created_at.date }}
+                </div>
+            </div>
+        </div>
+      </div>
+          {% endfor %}
+      </div>
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Search Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+              {% include 'search-form.html' %}
+            </div>
+          </div>
+
+          <!-- Categories Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Categories</h5>
+            <div class="card-body">
+              <div class="row">
+              {% for topic in topics %}
+                  <a href="{% url 'topicpostview' topic.id %}" class=" badge badge-light badge-pill py-3 px-2 mb-2 mr-2">{{ topic.subject }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+
+    <!-- /.container -->
+
+  <div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <!-- <a href="?page=1">&laquo; first</a> -->
+            <a href="?page={{ contacts.previous_page_number }}">&laquo; Previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">Next &raquo;</a>
+            <!-- <a href="?page={{ contacts.paginator.num_pages }}">last &raquo;</a> -->
+        {% endif %}
+    </span>
+</div>
+
+</div>
+{% endblock %}

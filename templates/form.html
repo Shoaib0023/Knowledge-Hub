@@ -1,0 +1,11 @@
+<div class="form-group">
+<label for="id_reply">Reply: </label>
+<textarea id="id_reply" class="form-control" name="reply" placeholder="Text Here......" rows='8' cols='70'></textarea>
+{% if form.non_field_error %}
+<ul>
+  {% for error in form.non_field_error %}
+    <li>{{ error }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+</div>

@@ -1,0 +1,77 @@
+{% extends 'base.html '%}
+{% load static %}
+
+{% block title %}<title>Reply</title>{% endblock %}
+
+{% block css %}
+  <link href="{% static 'css/home/blog-home.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+      <h1 class="my-4 display-4">Reply
+       <small>post</small>
+      </h1>
+
+      <!-- Blog Post -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <p class="card-text lead">
+            {{ post.get_message_as_markdown }}
+          </p>
+          <!-- <a href="#" class="btn btn-outline-secondary">Reply &rarr;</a> -->
+        </div>
+        <div class="card-footer text-muted">
+          Posted on {{ post.created_at.date }} by
+          <a href="#">{{ post.created_by }}</a>
+        </div>
+      </div>
+
+      <div class="card mb-5">
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            {% include 'form.html' %}<br>
+            <button class="btn btn-lg btn-info" type="submit">Post</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4">
+
+      <!-- Search Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="button">Go!</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+{% endblock %}

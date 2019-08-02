@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block title %}<title>Post</title>{% endblock %}
+
+    {% block css %}
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+      <!-- Custom styles for this template -->
+    <link href="{% static 'css/home/blog-home.css' %}" rel="stylesheet">
+    {% endblock %}
+
+
+{% block body %}
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+          <h1 class="display-4 my-4">{{ topic.subject }}
+            <small> Post</small>
+          </h1>
+
+          <!-- Blog Post -->
+          {% if topic.posts.count %}
+          {% for post in topic.posts.all %}
+          <div class="card mb-4">
+
+            <div class="card-body">
+
+              <p class="card-text lead">
+                {{ post.message }}
+              </p>
+              <a href="{% url 'replypost' post.id %}" class="btn btn-outline-secondary">Reply &rarr;</a>
+              <a href="{% url 'post' post.id %}" class="btn btn-outline-secondary">View &rarr;</a>
+            </div>
+
+            <div class="card-footer text-muted">
+              <div class="row">
+                <div class="col-8">
+                    <b>Views: {{ post.views }}</b>
+                </div>
+                <div class="col-4 ml-auto">
+                  Posted by
+              <a href="#">{{ post.created_by }}</a>
+                </div>
+              </div>
+           </div>
+         </div>
+        {% endfor %}
+        {% else %}
+        <div class="card mb-4">
+          <div class="card-body">
+            <p class="card-text lead">No posts found yet.</p>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Search Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+
+
+{% endblock %}

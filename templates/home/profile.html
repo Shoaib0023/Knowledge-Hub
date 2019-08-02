@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Profile</title>{% endblock %}
+
+{% block body %}
+<div class="container my-5" style="padding-top:60px">
+  <div class="row">
+    <div class="col-md-4 px-5">
+      {% if profile.image %}
+      <img src="{{ profile.image.url }}" alt="NO IMAGE UPLOADED" class="mx-auto img-thumbnail img-fluid img-circle d-block">
+      {% else %}
+      <!-- <img src="{% static 'img/Christian-Navarro.jpg' %}" alt="image" class="mx-auto img-thumbnail img-fluid img-circle d-block"> -->
+      <img src="{% static 'img/Christian-Navarro.png' %}" alt="No image yet" class="mx-auto img-thumbnail img-fluid img-circle d-block">
+      {% endif %}
+
+    </div>
+
+    <div class="col-8">
+      <h4 class="display-4 mb-5">Profile</h4><hr>
+
+          <h6 class="mb-3">Username:  <strong class="text-muted"> {{ current_user.username }}</strong></h6>
+           <div class="row">
+             <div class="col-md-6">
+                <h6>About</h6>
+                {% if profile.about %}
+                <p>{{ profile.about }}</p>
+                {% else %}
+                <p>Web Design, Sofware devlopment</p>
+                {% endif %}
+                <h6>Hobbies</h6>
+                {% if profile.hobbies %}
+                <p>{{ profile.hobbies }}</p>
+                {% else %}
+                <p>Music, Dancing, Coding, Football</p>
+                {% endif %}
+             </div>
+             <div class="col-md-6">
+               <h6>Tags</h6>
+               <a href="#" class="badge badge-dark badge-pill">Django</a>
+               <a href="#" class="badge badge-dark badge-pill">Java</a>
+               <a href="#" class="badge badge-dark badge-pill">Machine Learning</a>
+               <a href="#" class="badge badge-dark badge-pill">Web Designer</a>
+               <a href="#" class="badge badge-dark badge-pill">Databases</a>
+             </div>
+             </div>
+
+            <div class="row mt-3">
+              <div class="col">
+                <a href="{% url 'editprofile' current_user.id %}" class="btn btn-primary">Edit</a>
+              </div>
+            </div>
+
+
+          </div>
+
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

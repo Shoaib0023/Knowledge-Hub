@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Ask Question</title>{% endblock %}
+
+{% block css %}
+  <link href="{% static 'css/home/blog-home.css' %}" rel="stylesheet">
+{% endblock %}
+<!--
+{% block js %}
+<script>
+    var simplemde = new SimpleMDE();
+</script>
+{% endblock %} -->
+
+{% block body %}
+
+<div class="container">
+
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+      <h6 class="display-4 my-4">Ask a Question
+        <!-- <small>Secondary Text</small> -->
+      </h6><hr>
+
+      <div class="container mb-4">
+        <div class="card">
+          <div class="card-body">
+            <form method = "post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="id_message">Question:</label>
+                <textarea id="id_message" class="form-control" placeholder="Text Here......" name="message" rows='5'></textarea>
+
+                <label class="mt-4" for="id_tag">Tag: </label>
+                 <select name="tag" required="" id="id_tag">
+
+                  <option value="" selected="">Choose Tag.....</option>
+                  <option value="5">HTML</option>
+
+                   <option value="6">JAVA</option>
+
+                   <option value="7">PYTHON</option>
+
+                   <option value="8">JAVASCRIPT</option>
+
+                   <option value="9">PHP</option>
+
+                   <option value="10">DJANGO</option>
+
+                   <option value="11">DATABASE</option>
+
+                   <option value="12">OTHERS</option>
+
+                   <option value="4">CSS</option>
+                   <option value="13">JQUERY</option>
+
+                   <option value="14">AJAX</option>
+
+                   <option value="15">DYNAMIC PROGRAMMING</option>
+
+                   <option value="16">ALGORITHMS</option>
+
+                   <option value="17">MATHEMATICS</option>
+
+                   <option value="18">MACHINE LEARNING</option>
+
+                   <option value="19">ARTIFICIAL INTELLIGENCE</option>
+
+                  </select>
+              </div>
+              <button class="btn btn-primary">Post</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4">
+
+      <!-- Search Widget -->
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
