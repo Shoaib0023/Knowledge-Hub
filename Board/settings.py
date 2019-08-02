@@ -110,4 +110,4 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = '/home/questions/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
