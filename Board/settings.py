@@ -12,7 +12,7 @@ SECRET_KEY = ')+o#sd)pnq7q#vqv&um7e_4$k27ia_8qoh@nl$pj-712!!^%9*'
 # DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['knowledge-hub.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [

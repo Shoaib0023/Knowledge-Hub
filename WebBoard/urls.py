@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^accounts/logout/$', logout, name="logout"),
     # app functionality related urls
     url(r'^myposts/$', views.my_post, name="mypost"),
-    url(r'^questions/$', views.all_posts, name="allposts"),
+    url(r'questions/', views.all_posts, name="allposts"),
     url(r'^questions/mostviewed/$', views.most_viewed_post, name="mostviewed"),
     url(r'^questions/(?P<pk>\d+)/like/$', views.likefunc, name="likefunc"),
     url(r'^questions/ask/$', views.ask_question, name="askquestion"),
