@@ -6,6 +6,7 @@ from . forms import AskQuestionForm, ReplyPostForm, ProfileEditForm, SignUpForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+# from django.views.decorators.csrf import csrf_exempt
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 

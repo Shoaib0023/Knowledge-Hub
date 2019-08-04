@@ -23,9 +23,7 @@
         <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
         <div class="card-body">
           <!-- <h2 class="card-title">Post Title</h2> -->
-          <p class="card-text">
-            <p class="lead">{{ post.message }}</p>
-          </p>
+            <p class="card-text lead">{{ post.message }}</p>
           <a href="{% url 'replypost' post.id %}" class="btn btn-outline-secondary mr-3">Reply &rarr;</a>
           <a href="{% url 'post' post.id %}" class="btn btn-outline-secondary">View &rarr;</a>
 

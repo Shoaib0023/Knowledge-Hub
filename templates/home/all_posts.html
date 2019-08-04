@@ -1,29 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
-    {% block title %}<title>Blog Home - Start Bootstrap Template</title>{% endblock %}
+    {% block title %}<title>Posts</title>{% endblock %}
 
     {% block css %}
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="{% static 'css/home/blog-home.css' %}" rel="stylesheet">
 
-    <!-- <script>
-      function likefunc(id, e){
-        $.ajax({
-          url:'/home/questions/' + id +'/like/',
-          method:'POST',
-          data:'id='+id,
-          error:function(response){
-            alert('Error');
-          },
-          success:function(response){
-          e.children[1].textContent = response;
-
-          }
-        })
-      }
-    </script> -->
     {% endblock %}
 
 {% block body %}

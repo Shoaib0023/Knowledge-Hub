@@ -7,10 +7,10 @@ from Search import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('search/', include('Search.urls', namespace='search')),
     path('', include('WebBoard.urls')),
-    path('search/', include('Search.urls', namespace='search'))
 ]
 
-if settings.DEBUG:
-     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#      urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+#      urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
