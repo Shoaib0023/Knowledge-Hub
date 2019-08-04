@@ -1,12 +1,8 @@
 import os
 import dj_database_url
-import dotenv
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ')+o#sd)pnq7q#vqv&um7e_4$k27ia_8qoh@nl$pj-712!!^%9*'
@@ -60,15 +56,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Board.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+}
 
 
 # Password validation
