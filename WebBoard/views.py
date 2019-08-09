@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from . models import Post, Topic, ReplyPost, Profile
-from . forms import AskQuestionForm, ReplyPostForm, ProfileEditForm, SignUpForm
+from . forms import AskQuestionForm, ReplyPostForm, ProfileEditForm, \
+                    SignUpForm, LoginForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -32,6 +33,22 @@ def signup(request):
 # for homepage (urlname:home)
 def home(request):
     return render(request, 'home/home.html')
+
+def auth_login(request):
+    if request.method == "post":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(username=username, password=password1)
+            if user is not None():
+                login(request, user)
+                return redirect("allposts")
+    else:
+        form = LoginForm()
+
+    return render(request, 'accounts/login.html', {'form': form})
+
+# def auth_logout(request):
+
 
 # to display all post (urlname:allposts)
 def all_posts(request):

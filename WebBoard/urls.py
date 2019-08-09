@@ -7,6 +7,9 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name="signup"),
     url(r'^accounts/login/$', login, {'template_name':'accounts/login.html'}, name="login"),
     url(r'^accounts/logout/$', logout, name="logout"),
+    # url(r'accounts/login/$', views.login, name="login"),
+    # url(r'accounts/logout', view.logout, name="logout"),
+
     # app functionality related urls
     url(r'^myposts/$', views.my_post, name="mypost"),
     url(r'^questions/$', views.all_posts, name="allposts"),
@@ -17,7 +20,7 @@ urlpatterns = [
     url(r'^questions/(?P<pk>\d+)/edit/$', views.edit_post, name="editpost"),
     url(r'^questions/(?P<pk>\d+)/$', views.post, name="post"),
     url(r'^topic/(?P<pk>\d+)/$', views.topicpostview, name="topicpostview"),
-    # user profile urls
+
     url(r'^(?P<pk>\d+)/profile/$', views.profile, name="profile"),
     url(r'^(?P<pk>\d+)/profile/edit/$', views.edit_profile, name="editprofile"),
     url(r'', views.home, name="home"),

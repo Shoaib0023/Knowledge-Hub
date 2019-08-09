@@ -11,6 +11,13 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
+
+class LoginForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password1']
+
+
 class ProfileForm(ModelForm):
     about = forms.CharField(widget=forms.Textarea)
     class Meta:
