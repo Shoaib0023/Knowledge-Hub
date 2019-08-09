@@ -110,7 +110,8 @@ def reply_post(request,pk):
 
     else:
         form = ReplyPostForm()
-        return render(request, 'home/replypost.html', {'form':form ,'post':post})
+
+    return render(request, 'home/replypost.html', {'form':form ,'post':post})
 
 
 # for a particular post (urlname:post)
@@ -191,6 +192,7 @@ def edit_profile(request, pk):
             return redirect("profile", user.id)
     else:
         form = ProfileEditForm(instance=profile)
-        return render(request, 'home/editprofile.html', {'form':form, \
+
+    return render(request, 'home/editprofile.html', {'form':form, \
                                                          'current_user':user,
                                                          'profile':profile })
