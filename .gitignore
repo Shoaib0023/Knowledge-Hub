@@ -45,9 +45,6 @@ coverage.xml
 *.cover
 .hypothesis/
 
-# Translations
-*.mo
-*.pot
 
 # Django stuff:
 *.log
@@ -103,4 +100,4 @@ ENV/
 .vagrant
 
 staticfiles/
-'.env' 
+'.env'
