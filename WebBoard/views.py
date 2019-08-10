@@ -36,6 +36,7 @@ def home(request):
 
 def auth_login(request):
     if request.method == "POST":
+        form = LoginForm(request.POST)
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
@@ -44,7 +45,8 @@ def auth_login(request):
             return redirect('allposts')
     else:
         form = LoginForm()
-        return render(request, 'accounts/login.html', {'form': form})
+
+    return render(request, 'accounts/login.html', {'form': form})
 
 # def auth_logout(request):
 #     logout()
