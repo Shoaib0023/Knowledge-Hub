@@ -5,9 +5,7 @@ from django.contrib.auth.views import login,logout
 urlpatterns = [
     # accounts related urls
     url(r'^accounts/signup/$', views.signup, name="signup"),
-    url(r'^accounts/login/$', login, {'template_name':'accounts/login.html'}, name="login"),
-    # url(r'^accounts/logout/$', views.auth_logout, name="logout"),
-    # url(r'accounts/login/$', views.auth_login, name="login"),
+    url(r'accounts/login/$', views.auth_login, name="login"),
     url(r'accounts/logout', logout, name="logout"),
 
     # app functionality related urls
@@ -25,3 +23,6 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/profile/edit/$', views.edit_profile, name="editprofile"),
     url(r'', views.home, name="home"),
 ]
+
+# url(r'^accounts/login/$', login, {'template_name':'accounts/login.html'}, name="login"),
+# url(r'^accounts/logout/$', views.auth_logout, name="logout"),

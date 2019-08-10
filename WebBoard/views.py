@@ -20,7 +20,7 @@ def signup(request):
             form.save()      # cleaned_data is generated only after the form wills save.
             username = form.cleaned_data.get("username")
             password1 = form.cleaned_data.get("password1")
-            user = authenticate(username=username, password=password1)
+            user = authenticate(request, username=username, password=password1)
             profile = Profile.objects.create(user=user)
             profile.save()
             login(request, user)
@@ -34,22 +34,19 @@ def signup(request):
 def home(request):
     return render(request, 'home/home.html')
 
-# def auth_login(request):
-#     if request.method == "POST":
-#         form = LoginForm(request.POST)
-#         if form.is_valid():
-#             username = request.POST("username")
-#             password1 = form.cleaned_data.get("password1")
-#             user = authenticate(username=username, password=password1)
-#             print(user)
-#             if user :
-#                 login(request, user)
-#                 return redirect("allposts")
-#     else:
-#         form = LoginForm()
-#
-#     return render(request, 'accounts/login.html', {'form': form})
-#
+def auth_login(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('allposts')
+    else:
+        form = LoginForm()
+
+    return render(request, 'accounts/login.html', {'form': form})
+
 # def auth_logout(request):
 #     logout()
 #     return redirect('login')
