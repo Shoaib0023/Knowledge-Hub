@@ -1,14 +1,14 @@
 from django.conf.urls import url
 from . import views
-from django.contrib.auth.views import login, logout
+from django.contrib.auth.views import login,logout
 
 urlpatterns = [
     # accounts related urls
-    url(r'^signup/$', views.signup, name="signup"),
+    url(r'^accounts/signup/$', views.signup, name="signup"),
     url(r'^accounts/login/$', login, {'template_name':'accounts/login.html'}, name="login"),
-    url(r'^accounts/logout/$', logout, name="logout"),
-    # url(r'accounts/login/$', views.login, name="login"),
-    # url(r'accounts/logout', view.logout, name="logout"),
+    # url(r'^accounts/logout/$', views.auth_logout, name="logout"),
+    # url(r'accounts/login/$', views.auth_login, name="login"),
+    url(r'accounts/logout', logout, name="logout"),
 
     # app functionality related urls
     url(r'^myposts/$', views.my_post, name="mypost"),

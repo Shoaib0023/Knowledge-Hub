@@ -37,7 +37,7 @@ class ReplyPostForm(ModelForm):
 
     class Meta:
         model = ReplyPost
-        fields = ('reply',)
+        fields = ['reply']
 
 class ProfileEditForm(ModelForm):
     about = forms.CharField(widget=forms.Textarea)
@@ -45,3 +45,6 @@ class ProfileEditForm(ModelForm):
     class Meta:
         model = Profile
         fields = ('about', 'hobbies', 'image')
+
+
+# fields = ('reply',)

@@ -34,20 +34,25 @@ def signup(request):
 def home(request):
     return render(request, 'home/home.html')
 
-def auth_login(request):
-    if request.method == "post":
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            user = authenticate(username=username, password=password1)
-            if user is not None():
-                login(request, user)
-                return redirect("allposts")
-    else:
-        form = LoginForm()
-
-    return render(request, 'accounts/login.html', {'form': form})
-
+# def auth_login(request):
+#     if request.method == "POST":
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             username = request.POST("username")
+#             password1 = form.cleaned_data.get("password1")
+#             user = authenticate(username=username, password=password1)
+#             print(user)
+#             if user :
+#                 login(request, user)
+#                 return redirect("allposts")
+#     else:
+#         form = LoginForm()
+#
+#     return render(request, 'accounts/login.html', {'form': form})
+#
 # def auth_logout(request):
+#     logout()
+#     return redirect('login')
 
 
 # to display all post (urlname:allposts)
@@ -69,7 +74,7 @@ def all_posts(request):
     return render(request, "home/all_posts.html", args)
 
 # to ask any question (urlname:askquestion)
-@login_required
+@login_required(login_url='/accounts/login/')
 def ask_question(request):
     if request.method == "POST":
         form = AskQuestionForm(request.POST)
@@ -94,7 +99,6 @@ def ask_question(request):
         return render(request, "home/ask_question.html", args)
 
 # to reply a post (urlname:replypost)
-@login_required
 def reply_post(request,pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == 'POST':
@@ -115,7 +119,7 @@ def reply_post(request,pk):
 
 
 # for a particular post (urlname:post)
-@login_required
+@login_required(login_url='/accounts/login/')
 def post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.views += 1
@@ -140,7 +144,7 @@ def topicpostview(request, pk):
     return render(request, 'home/topicpage.html', args)
 
 
-@login_required
+@login_required(login_url='/accounts/login/')
 def edit_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     # to prepopulate the form .
