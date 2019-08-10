@@ -45,6 +45,3 @@ class ProfileEditForm(ModelForm):
     class Meta:
         model = Profile
         fields = ('about', 'hobbies', 'image')
-
-
-# fields = ('reply',)

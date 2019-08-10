@@ -7,8 +7,6 @@ from . forms import AskQuestionForm, ReplyPostForm, ProfileEditForm, \
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-# from django.views.decorators.csrf import csrf_exempt
-
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
@@ -17,7 +15,7 @@ def signup(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()      # cleaned_data is generated only after the form wills save.
+            form.save()
             username = form.cleaned_data.get("username")
             password1 = form.cleaned_data.get("password1")
             user = authenticate(request, username=username, password=password1)
@@ -142,7 +140,6 @@ def topicpostview(request, pk):
 @login_required(login_url='/accounts/login/')
 def edit_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    # to prepopulate the form .
     form = AskQuestionForm(request.POST or None, instance=post)
     if request.method == "POST":
         form.save()

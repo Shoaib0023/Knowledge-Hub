@@ -23,6 +23,3 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/profile/edit/$', views.edit_profile, name="editprofile"),
     url(r'', views.home, name="home"),
 ]
-
-# url(r'^accounts/login/$', login, {'template_name':'accounts/login.html'}, name="login"),
-# url(r'^accounts/logout/$', views.auth_logout, name="logout"),
