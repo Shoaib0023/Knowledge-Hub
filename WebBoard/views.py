@@ -48,10 +48,6 @@ def auth_login(request):
 
     return render(request, 'accounts/login.html', {'form': form})
 
-# def auth_logout(request):
-#     logout()
-#     return redirect('login')
-
 
 # to display all post (urlname:allposts)
 def all_posts(request):
@@ -97,6 +93,7 @@ def ask_question(request):
         return render(request, "home/ask_question.html", args)
 
 # to reply a post (urlname:replypost)
+@login_required(login_url='/accounts/login/')
 def reply_post(request,pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == 'POST':
