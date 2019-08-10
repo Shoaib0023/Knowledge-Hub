@@ -4,11 +4,11 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')+o#sd)pnq7q#vqv&um7e_4$k27ia_8qoh@nl$pj-712!!^%9*'
+# SECRET_KEY = ')+o#sd)pnq7q#vqv&um7e_4$k27ia_8qoh@nl$pj-712!!^%9*'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
